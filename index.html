@@ -297,7 +297,7 @@ select::-ms-expand {
         window.insertMessage = function() {
           var msgText, requestOptions;
           msgText = $(".action-box-input").val();
-		  person = $(".person :selected").val();
+		      person = $(".person :selected").val();
           if ($.trim(msgText) === "") {
             return false;
           }
@@ -323,7 +323,11 @@ select::-ms-expand {
           fetch('https://api.openai.com/v1/completions', requestOptions)
             .then(response => response.json())
             .then(data => {
-              var msg = $("<div>").addClass("message");
+              var msg = $("<div>").addClass("message");              
+              if(data.choices == undefined)
+              {
+                throw new Error(data.error.message);
+              }
               msg.text(data.choices[0].text);
               msg.addClass("remote").appendTo($('.mCSB_container'));
               setDate();
