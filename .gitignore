@@ -1,0 +1,26 @@
+# ===== NostalgiaGPT — .gitignore =====
+
+# ---- Segredos (NUNCA versionar a chave da OpenAI) ----
+.env
+.env.*
+config.js
+secrets.js
+
+# ---- Dependências (caso adicione um bundler no futuro) ----
+node_modules/
+dist/
+
+# ---- Logs ----
+*.log
+npm-debug.log*
+
+# ---- Binários pesados ----
+*.zip
+*.7z
+*.bin
+
+# ---- Sistema / editores ----
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
