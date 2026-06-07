@@ -1,4 +1,6 @@
-<div align="center">
+<div align="center"><img src="icon.png" alt="icone" width="120" height="120" />
+
+
 
 # 🕰️ NostalgiaGPT — Converse com a História
 
