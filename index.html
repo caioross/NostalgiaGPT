@@ -1,87 +1,248 @@
-<!doctype html>
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ═══ SEO Primário ═══ -->
+  <title>NostalgiaGPT — Converse com a História | Chat com Personalidades Históricas via IA</title>
+  <meta name="description" content="Converse em primeira pessoa com mais de 40 personalidades históricas usando inteligência artificial. Einstein, Cleópatra, Tesla, Shakespeare, Gandhi, Newton e muito mais. Educação imersiva e gratuita.">
+  <meta name="keywords" content="NostalgiaGPT, chat histórico, inteligência artificial, personalidades históricas, Einstein, Cleópatra, Tesla, Shakespeare, Newton, IA educação, OpenAI, chat IA, figuras históricas, historia interativa">
+  <meta name="author" content="Caio Ross">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
+  <meta name="theme-color" content="#06060b">
+  <link rel="canonical" href="https://caioross.github.io/NostalgiaGPT/">
+
+  <!-- ═══ Open Graph / Facebook ═══ -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="NostalgiaGPT — Converse com a História">
+  <meta property="og:description" content="Converse em primeira pessoa com mais de 40 personalidades históricas usando IA. Einstein, Cleópatra, Tesla, Shakespeare, Gandhi e muito mais.">
+  <meta property="og:image" content="https://caioross.github.io/NostalgiaGPT/images/homepage.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://caioross.github.io/NostalgiaGPT/">
+  <meta property="og:site_name" content="NostalgiaGPT">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- ═══ Twitter Card ═══ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="NostalgiaGPT — Converse com a História">
+  <meta name="twitter:description" content="Chat com 40+ personalidades históricas via IA. Converse com Einstein, Cleópatra, Tesla e muito mais, em primeira pessoa.">
+  <meta name="twitter:image" content="https://caioross.github.io/NostalgiaGPT/images/homepage.jpg">
+  <meta name="twitter:creator" content="@caioross">
+
+  <!-- ═══ Structured Data ═══ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "NostalgiaGPT",
+    "alternateName": "Nostalgia GPT",
+    "description": "Chat interativo com mais de 40 personalidades históricas usando inteligência artificial. Converse com Einstein, Cleópatra, Tesla, Shakespeare, Gandhi e outros em primeira pessoa.",
+    "url": "https://caioross.github.io/NostalgiaGPT/",
+    "image": "https://caioross.github.io/NostalgiaGPT/images/homepage.jpg",
+    "author": {
+      "@type": "Person",
+      "name": "Caio Ross",
+      "url": "https://github.com/caioross"
+    },
+    "applicationCategory": "EducationalApplication",
+    "applicationSubCategory": "History",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript",
+    "inLanguage": ["pt-BR", "en"],
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "BRL" },
+    "featureList": [
+      "Chat com mais de 40 personalidades históricas",
+      "Respostas em primeira pessoa geradas por IA",
+      "Seletor de personagens em carrossel interativo",
+      "Interface nostálgica e imersiva",
+      "Avatares das personalidades",
+      "Sem necessidade de cadastro",
+      "Funciona direto no navegador"
+    ],
+    "about": [
+      "Albert Einstein", "Isaac Newton", "Nikola Tesla", "Cleópatra", "Leonardo da Vinci",
+      "Shakespeare", "Mahatma Gandhi", "Napoleão Bonaparte", "Ayrton Senna", "Sigmund Freud",
+      "Ludwig van Beethoven", "Platão", "Aristóteles", "Charles Darwin", "Vincent van Gogh"
+    ]
+  }
+  </script>
+
+  <!-- ═══ Favicon & Assets ═══ -->
   <link rel="icon" type="image/png" href="icon.png">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Caio Ross</title>
+  <link rel="apple-touch-icon" href="icon.png">
 
-    <link href="css/styles.css" rel="stylesheet">
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.min.css'>
-    <link href="brusher-demo.min.css" rel="stylesheet">
-  </head>
-  <body class="homepage">
-    <script type="text/javascript" src="brusher-demo.min.js"></script>
-    <div class="chat">
-      <div class="chat-title">
-        
-		
-		
-  <select class="person">
-      <option value="Albert Einstein">Albert Einstein</option>
-      <option value="Alexandre, o Grande">Alexandre, o Grande</option>
-      <option value="Aristóteles">Aristóteles</option>
-      <option value="Ayrton Senna">Ayrton Senna</option>
-      <option value="Beethoven">Beethoven</option>
-      <option value="Buda">Buda</option>
-      <option value="Charles Darwin">Charles Darwin</option>
-      <option value="Che Guevara">Che Guevara</option>
-      <option value="Cândido Rondon">Cândido Rondon</option>
-      <option value="Cleópatra">Cleópatra</option>
-      <option value="Claudio Coutinho">Claudio Coutinho</option>
-      <option value="Confúcio">Confúcio</option>
-      <option value="Dom Pedro II">Dom Pedro II</option>
-      <option value="Edgar Allan Poe">Edgar Allan Poe</option>
-      <option value="Eleanor Roosevelt">Eleanor Roosevelt</option>
-      <option value="Elis Regina">Elis Regina</option>
-      <option value="Elvis Presley">Elvis Presley</option>
-      <option value="Ernest Hemingway">Ernest Hemingway</option>
-      <option value="Galileu Galilei">Galileu Galilei</option>
-      <option value="Gandhi">Gandhi</option>
-      <option value="George Washington">George Washington</option>
-      <option value="Getúlio Vargas">Getúlio Vargas</option>
-      <option value="Heitor Villa-Lobos">Heitor Villa-Lobos</option>
-      <option value="Isaac Newton">Isaac Newton</option>
-      <option value="Jane Austen">Jane Austen</option>
-      <option value="Jesus Cristo">Jesus Cristo</option>
-      <option value="Johann Sebastian Bach">Johann Sebastian Bach</option>
-      <option value="John F. Kennedy">John F. Kennedy</option>
-      <option value="Leonardo da Vinci">Leonardo da Vinci</option>
-      <option value="Ludwig van Beethoven">Ludwig van Beethoven</option>
-      <option value="Machado de Assis">Machado de Assis</option>
-      <option value="Mahatma Gandhi">Mahatma Gandhi</option>
-      <option value="Martin Luther King Jr.">Martin Luther King Jr.</option>
-      <option value="Michelangelo">Michelangelo</option>
-      <option value="Napoleão Bonaparte">Napoleão Bonaparte</option>
-      <option value="Nelson Mandela">Nelson Mandela</option>
-      <option value="Nikola Tesla">Nikola Tesla</option>
-      <option value="Pablo Picasso">Pablo Picasso</option>
-      <option value="Platão">Platão</option>
-      <option value="Princesa Diana">Princesa Diana</option>
-      <option value="Robin Hood">Robin Hood</option>
-      <option value="Salvador Dali">Salvador Dali</option>
-      <option value="Shakespeare">Shakespeare</option>
-      <option value="Sigmund Freud">Sigmund Freud</option>
-      <option value="Steve Jobs">Steve Jobs</option>
-      <option value="Thomas Edison">Thomas Edison</option>
-      <option value="Van Gogh">Van Gogh</option>
-      <option value="Vincente de Paulo">Vincente de Paulo</option>
-      <option value="Winston Churchill">Winston Churchill</option>
-  </select>
+  <!-- ═══ Google Fonts ═══ -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
 
-		
-        <figure class="avatar"><img/></figure>
-      </div>
-      <div class="messages">
-        <div class="messages-content"></div>
-      </div>
-      <div class="action-box">
-        <textarea class="action-box-input" type="text" placeholder="Escreva..."></textarea>
-        <button class="action-box-submit" type="submit" onclick="insertMessage()">Enviar</button>
+  <!-- ═══ Styles ═══ -->
+  <link href="css/styles.css" rel="stylesheet">
+</head>
+<body class="homepage">
+
+  <!-- ═══ Efeito de fundo "Brusher" (esfumaçado / revelar) ═══ -->
+  <script src="brusher-demo.min.js"></script>
+
+  <!-- ═══════════════════ CHAT ═══════════════════ -->
+  <section class="chat-section" id="chat" aria-label="Interface de chat">
+    <div class="chat-section-bg" aria-hidden="true"></div>
+    <div class="chat-container">
+      <div class="chat-card" role="main">
+
+        <!-- Personality Bar -->
+        <div class="personality-bar" role="banner">
+          <div class="avatar-wrapper" id="avatar-slot" aria-hidden="true">
+            <!-- preenchido via JS (foto ou monograma) -->
+          </div>
+          <div class="personality-info">
+            <div class="talking-with-label">conversando com</div>
+            <div class="personality-name" id="personality-name">Albert Einstein</div>
+            <div class="personality-tag" id="personality-tag">Pai da Relatividade</div>
+          </div>
+          <button type="button" class="picker-trigger" id="open-picker" data-open-picker aria-haspopup="dialog" aria-label="Trocar de personagem">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span class="trigger-text">Trocar<br>personagem</span>
+          </button>
+
+          <!-- Select nativo escondido: fallback sem-JS + estado + SEO -->
+          <label for="person-select" class="visually-hidden">Selecione a personalidade histórica</label>
+          <select id="person-select" class="visually-hidden person" tabindex="-1" aria-hidden="true">
+            <option value="Albert Einstein">Albert Einstein</option>
+            <option value="Isaac Newton">Isaac Newton</option>
+            <option value="Nikola Tesla">Nikola Tesla</option>
+            <option value="Thomas Edison">Thomas Edison</option>
+            <option value="Charles Darwin">Charles Darwin</option>
+            <option value="Galileu Galilei">Galileu Galilei</option>
+            <option value="Steve Jobs">Steve Jobs</option>
+            <option value="Leonardo da Vinci">Leonardo da Vinci</option>
+            <option value="Michelangelo">Michelangelo</option>
+            <option value="Pablo Picasso">Pablo Picasso</option>
+            <option value="Van Gogh">Van Gogh</option>
+            <option value="Shakespeare">Shakespeare</option>
+            <option value="Edgar Allan Poe">Edgar Allan Poe</option>
+            <option value="Ernest Hemingway">Ernest Hemingway</option>
+            <option value="Jane Austen">Jane Austen</option>
+            <option value="Machado de Assis">Machado de Assis</option>
+            <option value="Salvador Dalí">Salvador Dalí</option>
+            <option value="Platão">Platão</option>
+            <option value="Aristóteles">Aristóteles</option>
+            <option value="Confúcio">Confúcio</option>
+            <option value="Buda">Buda</option>
+            <option value="Jesus Cristo">Jesus Cristo</option>
+            <option value="Sigmund Freud">Sigmund Freud</option>
+            <option value="Vicente de Paulo">Vicente de Paulo</option>
+            <option value="Mahatma Gandhi">Mahatma Gandhi</option>
+            <option value="Napoleão Bonaparte">Napoleão Bonaparte</option>
+            <option value="George Washington">George Washington</option>
+            <option value="John F. Kennedy">John F. Kennedy</option>
+            <option value="Nelson Mandela">Nelson Mandela</option>
+            <option value="Winston Churchill">Winston Churchill</option>
+            <option value="Che Guevara">Che Guevara</option>
+            <option value="Martin Luther King Jr.">Martin Luther King Jr.</option>
+            <option value="Eleanor Roosevelt">Eleanor Roosevelt</option>
+            <option value="Dom Pedro II">Dom Pedro II</option>
+            <option value="Getúlio Vargas">Getúlio Vargas</option>
+            <option value="Alexandre, o Grande">Alexandre, o Grande</option>
+            <option value="Cleópatra">Cleópatra</option>
+            <option value="Cândido Rondon">Cândido Rondon</option>
+            <option value="Ludwig van Beethoven">Ludwig van Beethoven</option>
+            <option value="Johann Sebastian Bach">Johann Sebastian Bach</option>
+            <option value="Elvis Presley">Elvis Presley</option>
+            <option value="Elis Regina">Elis Regina</option>
+            <option value="Heitor Villa-Lobos">Heitor Villa-Lobos</option>
+            <option value="Ayrton Senna">Ayrton Senna</option>
+            <option value="Claudio Coutinho">Claudio Coutinho</option>
+            <option value="Princesa Diana">Princesa Diana</option>
+            <option value="Robin Hood">Robin Hood</option>
+          </select>
+        </div>
+
+        <!-- Messages -->
+        <div class="messages" role="log" aria-label="Conversa" aria-live="polite">
+          <div class="messages-content" id="messages-content"></div>
+        </div>
+
+        <!-- Input -->
+        <div class="action-box" role="form">
+          <label for="chat-input" class="visually-hidden">Sua mensagem</label>
+          <textarea
+            id="chat-input"
+            class="action-box-input"
+            placeholder="O que você perguntaria a esta personalidade?"
+            rows="1"
+            aria-label="Digite sua mensagem"
+          ></textarea>
+          <button
+            class="action-box-submit"
+            type="button"
+            onclick="insertMessage()"
+            aria-label="Enviar mensagem"
+            title="Enviar (Enter)"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </div>
       </div>
     </div>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
-    <script src="js/mainJs.js"></script>
-  </body>
+  </section>
+
+  <!-- ═══════════════════ MODAL: GÔNDOLA ═══════════════════ -->
+  <div class="picker-overlay" id="picker" hidden>
+    <div class="picker-backdrop" data-close-picker></div>
+    <div class="picker-modal" role="dialog" aria-modal="true" aria-labelledby="picker-title">
+      <button type="button" class="picker-close" data-close-picker aria-label="Fechar seletor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <div class="picker-head">
+        <p class="picker-eyebrow">A Gôndola de Lendas</p>
+        <h2 class="picker-title" id="picker-title">Com quem você quer conversar?</h2>
+        <div class="picker-search-wrap">
+          <svg class="picker-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="picker-search" class="picker-search" placeholder="Buscar por nome..." aria-label="Buscar personagem" autocomplete="off">
+          <button type="button" class="picker-search-clear" id="picker-search-clear" aria-label="Limpar busca" hidden>✕</button>
+        </div>
+      </div>
+
+      <div class="picker-cats" id="picker-cats" role="tablist" aria-label="Filtrar por categoria"></div>
+
+      <div class="gondola-viewport">
+        <button type="button" class="gondola-nav prev" id="gondola-prev" aria-label="Anterior">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="gondola-track" id="gondola-track"></div>
+        <button type="button" class="gondola-nav next" id="gondola-next" aria-label="Próximo">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="picker-foot">
+        <div class="picker-selected" id="picker-selected" aria-live="polite"></div>
+        <button type="button" class="picker-confirm" id="picker-confirm">
+          Iniciar conversa
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="js/personalities.js"></script>
+  <script src="js/mainJs.js"></script>
+</body>
 </html>

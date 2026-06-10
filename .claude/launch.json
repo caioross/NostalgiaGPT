@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "NostalgiaGPT",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", ".", "--no-clipboard", "-p", "3799"],
+      "port": 3799
+    }
+  ]
+}
