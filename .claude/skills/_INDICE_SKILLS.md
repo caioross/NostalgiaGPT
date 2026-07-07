@@ -4,7 +4,7 @@
 > Caminho: `E:\Projetos\Sites\NostalgiaGPT`
 > Git: `https://github.com/caioross/NostalgiaGPT.git` · branch `main`
 > Estado: Beta funcional · Nota de saúde: 6/10 (ver `Relatorio_NostalgiaGPT.md`)
-> Última atualização deste índice: 2026-06-20
+> Última atualização deste índice: 2026-07-07
 
 ---
 
@@ -13,7 +13,7 @@
 | Skill | Quando usar |
 |---|---|
 | `nostalgia-content` | Criar nova personalidade histórica, escrever system prompt em primeira pessoa, curar referências culturais corretas por época, validar metadados (campo faltando, id duplicado, anacronia estrutural), escalar além das 47 personalidades atuais, corrigir erro factual em personalidade existente. ⚠️ Em atualização — ver issue #10. |
-| `ngpt-fleet-ops` | TODA rodada da frota autônoma (Curador 12h20 · Resolvedor 16h20 · PR Doctor 21h20): claim, worktree, gate (`node scripts/gate.mjs`), PR, quórum adversarial, merge, limpeza, Discussions. Lei da frota: `docs/fleet/HANDBOOK.md` · Diário: issue #7. |
+| `ng-fleet-ops` | TODA rodada da frota autônoma (Curador ~12h · Resolvedor ~16h · PR Doctor ~21h30): claim, worktree, gate (`node scripts/gate.mjs`), PR, quórum adversarial, merge, limpeza, Discussions. Lei da frota: `docs/fleet/HANDBOOK.md` · Diário: issue #7 (fixada). |
 
 ---
 
