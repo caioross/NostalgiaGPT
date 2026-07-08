@@ -10,8 +10,9 @@
      CONFIG — cole sua chave da OpenAI aqui.
      ⚠️ Em produção, mova esta chamada para um backend/proxy.
   ───────────────────────────────────────────────*/
-  var OPENAI_KEY   = 'SUA_CHAVE_OPENAI_AQUI';
-  var OPENAI_MODEL = 'gpt-4o-mini';
+  var OPENAI_KEY     = 'SUA_CHAVE_OPENAI_AQUI';
+  var OPENAI_MODEL   = 'gpt-4o-mini';
+  var OPENAI_TIMEOUT = 30000;   // ms — aborta a chamada se a OpenAI não responder
 
   var STARTERS = [
     'Qual foi o maior desafio da sua vida?',
@@ -133,6 +134,29 @@
     ].join(' ');
   }
 
+  /* Traduz uma falha da chamada OpenAI em mensagem amigável (estilo vintage, exibida no chat).
+     `err.status` é anexado no fluxo abaixo quando a resposta HTTP não é ok. */
+  function chatErrorMessage(err) {
+    if (err && err.name === 'AbortError') {
+      return '⌛ A resposta demorou demais e foi interrompida. Verifique sua conexão e tente novamente.';
+    }
+    var status = err && err.status;
+    if (status === 401) {
+      return '🔑 Chave da OpenAI inválida ou ausente. Configure a constante OPENAI_KEY em js/mainJs.js e recarregue a página.';
+    }
+    if (status === 429) {
+      return '⏳ Muitas solicitações à OpenAI agora (ou cota esgotada). Aguarde alguns instantes e tente de novo.';
+    }
+    if (status && status >= 500) {
+      return '🛠️ A OpenAI está com instabilidade no momento. Tente novamente em alguns instantes.';
+    }
+    if (status) {
+      return '⚠️ A OpenAI recusou a solicitação (erro ' + status + '). Tente novamente em instantes.';
+    }
+    // Sem status: fetch rejeitou antes de responder — tipicamente rede/offline.
+    return '📡 Não consegui falar com a OpenAI. Verifique sua conexão com a internet e tente novamente.';
+  }
+
   window.insertMessage = function () {
     var input = document.getElementById('chat-input');
     if (!input || !currentPerson) return;
@@ -147,6 +171,11 @@
     var messages = [{ role: 'system', content: buildSystemPrompt(currentPerson) }]
       .concat(conversation.slice(-10));
 
+    /* Timeout via AbortController (vanilla; sem dependência). Falha silenciosa
+       de rede vira AbortError após OPENAI_TIMEOUT ms. */
+    var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timeoutId  = controller ? setTimeout(function () { controller.abort(); }, OPENAI_TIMEOUT) : null;
+
     fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -160,10 +189,16 @@
         max_tokens: 600,
         presence_penalty: 0.4,
         frequency_penalty: 0.3
-      })
+      }),
+      signal: controller ? controller.signal : undefined
     })
       .then(function (res) {
-        if (!res.ok) return res.text().then(function (t) { throw new Error('HTTP ' + res.status + ' — ' + t); });
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        if (!res.ok) return res.text().then(function (t) {
+          var e = new Error('HTTP ' + res.status + ' — ' + t);
+          e.status = res.status;
+          throw e;
+        });
         return res.json();
       })
       .then(function (data) {
@@ -175,8 +210,9 @@
         appendAIMessage(text);
       })
       .catch(function (err) {
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
         hideTyping();
-        appendAIMessage('⚠️ Não consegui responder agora. Verifique se a chave da OpenAI foi configurada em js/mainJs.js (constante OPENAI_KEY) e tente novamente.');
+        appendAIMessage(chatErrorMessage(err));
         console.error('[NostalgiaGPT]', err);
       });
   };
