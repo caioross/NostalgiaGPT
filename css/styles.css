@@ -368,6 +368,7 @@ button { font-family: var(--font-body); cursor: pointer; }
   padding: 1rem 1.25rem; resize: none; min-height: 58px; max-height: 120px;
   outline: none; letter-spacing: 0.02em; overflow-y: auto;
 }
+.action-box-input:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; }
 .action-box-input::placeholder { color: var(--text-dim); font-style: italic; }
 .action-box-submit {
   width: 58px; min-height: 58px; background: var(--gold); border: none;
