@@ -39,6 +39,14 @@
     });
   }
   function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+  /* Preferência de movimento reduzido (a11y) — reativa a mudanças do SO */
+  var reduceMotionMQ = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  function prefersReducedMotion() { return !!(reduceMotionMQ && reduceMotionMQ.matches); }
+  function motionBehavior() { return prefersReducedMotion() ? 'auto' : 'smooth'; }
+  if (reduceMotionMQ && reduceMotionMQ.addEventListener) {
+    reduceMotionMQ.addEventListener('change', function () { updateGondola(); });
+  }
   function getTime() {
     var d = new Date(), m = d.getMinutes();
     return d.getHours() + ':' + (m < 10 ? '0' : '') + m;
@@ -353,19 +361,28 @@
     if (!cards.length) return;
     var vpCenter = track.scrollLeft + track.clientWidth / 2;
     var nearest = null, nearestDist = Infinity;
+    var reduced = prefersReducedMotion();
 
     cards.forEach(function (card) {
       var cardCenter = card.offsetLeft + card.offsetWidth / 2;
       var dist = cardCenter - vpCenter;
-      var norm = dist / card.offsetWidth;
-      var a = Math.abs(norm);
-      var scale = clamp(1 - a * 0.16, 0.72, 1);
-      var rot   = clamp(-norm * 24, -45, 45);
-      var tz    = -Math.min(a, 3) * 70;
-      var op    = clamp(1 - a * 0.34, 0.30, 1);
-      card.style.transform = 'translateZ(' + tz.toFixed(1) + 'px) rotateY(' + rot.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')';
-      card.style.opacity = op.toFixed(2);
-      card.style.zIndex = String(200 - Math.round(a * 12));
+      if (reduced) {
+        // Movimento reduzido: caminho plano, sem rotateY/translateZ/scale nem dim.
+        // Cards ficam legíveis; o realce do selecionado vem só da classe .is-active.
+        card.style.transform = 'none';
+        card.style.opacity = '';
+        card.style.zIndex = '';
+      } else {
+        var norm = dist / card.offsetWidth;
+        var a = Math.abs(norm);
+        var scale = clamp(1 - a * 0.16, 0.72, 1);
+        var rot   = clamp(-norm * 24, -45, 45);
+        var tz    = -Math.min(a, 3) * 70;
+        var op    = clamp(1 - a * 0.34, 0.30, 1);
+        card.style.transform = 'translateZ(' + tz.toFixed(1) + 'px) rotateY(' + rot.toFixed(1) + 'deg) scale(' + scale.toFixed(3) + ')';
+        card.style.opacity = op.toFixed(2);
+        card.style.zIndex = String(200 - Math.round(a * 12));
+      }
       if (Math.abs(dist) < nearestDist) { nearestDist = Math.abs(dist); nearest = card; }
     });
 
@@ -382,14 +399,14 @@
   function centerCard(card) {
     if (!card || !track) return;
     var target = card.offsetLeft + card.offsetWidth / 2 - track.clientWidth / 2;
-    track.scrollTo({ left: target, behavior: 'smooth' });
+    track.scrollTo({ left: target, behavior: motionBehavior() });
   }
   function scrollByCards(dir) {
     if (!track) return;
     var cards = track.querySelectorAll('.gondola-card');
     if (cards.length < 2) return;
     var step = cards[1].offsetLeft - cards[0].offsetLeft;
-    track.scrollBy({ left: dir * step, behavior: 'smooth' });
+    track.scrollBy({ left: dir * step, behavior: motionBehavior() });
   }
 
   function confirmSelection() {
