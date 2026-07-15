@@ -49,13 +49,13 @@
   /* ── Personagens (img = null → monograma gerado) ── */
   var PEOPLE = [
     /* Ciência & Tecnologia */
-    { name: 'Albert Einstein',        cat: 'ciencia',   years: '1879–1955',     tagline: 'Pai da Relatividade',          img: 'persons/Albert Einstein.jpg' },
-    { name: 'Isaac Newton',           cat: 'ciencia',   years: '1643–1727',     tagline: 'As Leis do Movimento',         img: 'persons/Isaac Newton.jpg' },
-    { name: 'Nikola Tesla',           cat: 'ciencia',   years: '1856–1943',     tagline: 'O Gênio da Eletricidade',      img: 'persons/Nikola Tesla.jpg' },
-    { name: 'Thomas Edison',          cat: 'ciencia',   years: '1847–1931',     tagline: 'O Mago de Menlo Park',         img: 'persons/Thomas Edison.jpg' },
-    { name: 'Charles Darwin',         cat: 'ciencia',   years: '1809–1882',     tagline: 'A Origem das Espécies',        img: null },
-    { name: 'Galileu Galilei',        cat: 'ciencia',   years: '1564–1642',     tagline: 'Pai da Ciência Moderna',       img: null },
-    { name: 'Steve Jobs',             cat: 'ciencia',   years: '1955–2011',     tagline: 'O Visionário da Apple',        img: null },
+    { name: 'Albert Einstein',        cat: 'ciencia',   years: '1879–1955',     tagline: 'Pai da Relatividade',          img: 'persons/Albert Einstein.jpg', starters: ['Como o senhor imaginou viajar ao lado de um raio de luz?', 'O que sentiu ao saber que o eclipse de 1919 confirmou sua teoria?', 'Por que o senhor dizia que Deus não joga dados?'] },
+    { name: 'Isaac Newton',           cat: 'ciencia',   years: '1643–1727',     tagline: 'As Leis do Movimento',         img: 'persons/Isaac Newton.jpg', starters: ['É verdade que uma maçã o inspirou a pensar na gravidade?', 'Como foi decompor a luz branca com um prisma?', 'O que significou para o senhor estar sobre ombros de gigantes?'] },
+    { name: 'Nikola Tesla',           cat: 'ciencia',   years: '1856–1943',     tagline: 'O Gênio da Eletricidade',      img: 'persons/Nikola Tesla.jpg', starters: ['Por que o senhor defendia a corrente alternada contra Edison?', 'Como imaginava transmitir energia sem fios em Wardenclyffe?', 'O que via nas suas visões vívidas de máquinas completas?'] },
+    { name: 'Thomas Edison',          cat: 'ciencia',   years: '1847–1931',     tagline: 'O Mago de Menlo Park',         img: 'persons/Thomas Edison.jpg', starters: ['Quantas tentativas foram precisas até a lâmpada incandescente funcionar?', 'O que o senhor queria dizer com 1% de inspiração e 99% de transpiração?', 'Como era dirigir o laboratório de Menlo Park?'] },
+    { name: 'Charles Darwin',         cat: 'ciencia',   years: '1809–1882',     tagline: 'A Origem das Espécies',        img: null, starters: ['O que o senhor observou nos tentilhões das Galápagos?', 'Por que hesitou tantos anos antes de publicar A Origem das Espécies?', 'Como foi a viagem a bordo do Beagle?'] },
+    { name: 'Galileu Galilei',        cat: 'ciencia',   years: '1564–1642',     tagline: 'Pai da Ciência Moderna',       img: null, starters: ['O que o senhor viu ao apontar sua luneta para Júpiter?', 'Como foi enfrentar a Inquisição por defender Copérnico?', 'É verdade que sussurrou Eppur si muove depois do julgamento?'] },
+    { name: 'Steve Jobs',             cat: 'ciencia',   years: '1955–2011',     tagline: 'O Visionário da Apple',        img: null, starters: ['O que te levou a voltar à Apple em 1997?', 'Por que a simplicidade era tão importante no seu design?', 'Como foi apresentar o primeiro iPhone em 2007?'] },
 
     /* Arte & Literatura */
     { name: 'Leonardo da Vinci',      cat: 'arte',      years: '1452–1519',     tagline: 'O Gênio Renascentista',        img: null },

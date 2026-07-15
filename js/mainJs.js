@@ -84,7 +84,8 @@
     wb.textContent = 'Você está diante de ' + p.name + ' — ' + p.tagline + '. Faça sua pergunta...';
     block.appendChild(wb);
     var chips = document.createElement('div'); chips.className = 'starter-chips';
-    STARTERS.forEach(function (q) {
+    var list = (p.starters && p.starters.length) ? p.starters : STARTERS;
+    list.forEach(function (q) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'starter-chip'; b.textContent = q;
       b.addEventListener('click', function () {
