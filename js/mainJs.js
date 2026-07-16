@@ -26,6 +26,7 @@
   var currentPerson = null;
   var conversation  = [];      // {role, content}
   var pendingSlug   = null;    // seleção dentro do modal
+  var pending       = null;    // requisição OpenAI em voo: { controller, timeoutId, cancelled }
   var state         = { cat: 'all', q: '' };
 
   /* Refs (atribuídas no init) */
@@ -120,6 +121,7 @@
   }
   function showTyping() {
     var c = getMessages(); if (!c) return;
+    hideTyping();               // garante no máximo um #typing-row no DOM
     clearWelcome(c);
     var row = document.createElement('div'); row.className = 'msg-row remote'; row.id = 'typing-row';
     var av = document.createElement('div'); av.className = 'msg-avatar';
@@ -131,6 +133,14 @@
     row.appendChild(av); row.appendChild(bubble); c.appendChild(row); scrollToBottom();
   }
   function hideTyping() { var el = document.getElementById('typing-row'); if (el) el.remove(); }
+
+  /* Bloqueia/desbloqueia o envio enquanto há uma resposta em voo (lock visível ao usuário). */
+  function setChatBusy(busy) {
+    var input = document.getElementById('chat-input');
+    var btn   = document.querySelector('.action-box-submit');
+    if (input) input.disabled = busy;
+    if (btn)   btn.disabled   = busy;
+  }
 
   function buildSystemPrompt(p) {
     return [
@@ -169,6 +179,7 @@
   window.insertMessage = function () {
     var input = document.getElementById('chat-input');
     if (!input || !currentPerson) return;
+    if (pending) return;         // já há uma resposta em voo — ignora o novo envio (lock)
     var msgText = input.value.trim();
     if (!msgText) return;
 
@@ -181,9 +192,19 @@
       .concat(conversation.slice(-10));
 
     /* Timeout via AbortController (vanilla; sem dependência). Falha silenciosa
-       de rede vira AbortError após OPENAI_TIMEOUT ms. */
+       de rede vira AbortError após OPENAI_TIMEOUT ms. O controller vive em `pending`
+       (estado de módulo) para que applyPerson() possa abortar ao trocar de personagem. */
     var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
-    var timeoutId  = controller ? setTimeout(function () { controller.abort(); }, OPENAI_TIMEOUT) : null;
+    var req = { controller: controller, timeoutId: null, cancelled: false };
+    req.timeoutId = controller ? setTimeout(function () { controller.abort(); }, OPENAI_TIMEOUT) : null;
+    pending = req;
+    setChatBusy(true);
+
+    /* Encerra a requisição: limpa o timeout e libera o lock se ainda for a atual. */
+    function done() {
+      if (req.timeoutId) { clearTimeout(req.timeoutId); req.timeoutId = null; }
+      if (pending === req) { pending = null; setChatBusy(false); }
+    }
 
     fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
@@ -202,7 +223,7 @@
       signal: controller ? controller.signal : undefined
     })
       .then(function (res) {
-        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        if (req.timeoutId) { clearTimeout(req.timeoutId); req.timeoutId = null; }
         if (!res.ok) return res.text().then(function (t) {
           var e = new Error('HTTP ' + res.status + ' — ' + t);
           e.status = res.status;
@@ -211,6 +232,8 @@
         return res.json();
       })
       .then(function (data) {
+        if (req.cancelled) { done(); return; }   // trocou de personagem — descarta a resposta antiga
+        done();
         hideTyping();
         var text = (data.choices && data.choices[0] && data.choices[0].message &&
           data.choices[0].message.content) ? data.choices[0].message.content.trim() : '';
@@ -219,7 +242,8 @@
         appendAIMessage(text);
       })
       .catch(function (err) {
-        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
+        if (req.cancelled) { done(); return; }    // abort intencional (troca de personagem) — silêncio
+        done();
         hideTyping();
         appendAIMessage(chatErrorMessage(err));
         console.error('[NostalgiaGPT]', err);
@@ -236,6 +260,15 @@
   }
   function applyPerson(p, scroll) {
     if (!p) return;
+    /* Cancela a resposta em voo do personagem anterior: marca como intencional
+       (o catch/then a ignora em silêncio) e libera o lock antes de trocar. */
+    if (pending) {
+      pending.cancelled = true;
+      if (pending.timeoutId) { clearTimeout(pending.timeoutId); pending.timeoutId = null; }
+      if (pending.controller) pending.controller.abort();
+      pending = null;
+      setChatBusy(false);
+    }
     currentPerson = p;
     if (avatarSlot) avatarSlot.innerHTML = avatarHTML(p) + '<div class="avatar-ring"></div>';
     if (nameEl) nameEl.textContent = p.name;
