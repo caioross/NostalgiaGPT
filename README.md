@@ -9,6 +9,10 @@
 
 <br/>
 
+[![Ver ao vivo · Live demo](https://img.shields.io/badge/▶_Ver_ao_vivo_·_Live_demo-caioross.github.io-c9a84c?style=for-the-badge)](https://caioross.github.io/NostalgiaGPT/)
+
+<br/>
+
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
@@ -35,6 +39,8 @@
 ---
 
 ## 🇧🇷 Português
+
+🔗 **Acesse ao vivo:** [caioross.github.io/NostalgiaGPT](https://caioross.github.io/NostalgiaGPT/) — experimente sem instalar nada.
 
 ### O que é
 
@@ -234,6 +240,8 @@ Distribuído sob a [licença MIT](LICENSE). Use, modifique e distribua à vontad
 ---
 
 ## 🇺🇸 English
+
+🔗 **Live demo:** [caioross.github.io/NostalgiaGPT](https://caioross.github.io/NostalgiaGPT/) — try it with nothing to install.
 
 ### What it is
 
