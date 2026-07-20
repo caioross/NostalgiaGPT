@@ -472,8 +472,8 @@
   }
   function onPickerKey(e) {
     if (e.which === 27) { e.preventDefault(); closePicker(); }
-    else if (e.which === 37) { e.preventDefault(); scrollByCards(-1); }
-    else if (e.which === 39) { e.preventDefault(); scrollByCards(1); }
+    else if (e.which === 37 && document.activeElement !== searchInput) { e.preventDefault(); scrollByCards(-1); }
+    else if (e.which === 39 && document.activeElement !== searchInput) { e.preventDefault(); scrollByCards(1); }
     else if (e.which === 13 && document.activeElement === searchInput) { e.preventDefault(); confirmSelection(); }
   }
 
