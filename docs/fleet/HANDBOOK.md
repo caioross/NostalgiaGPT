@@ -46,10 +46,15 @@ personalidades históricas** via OpenAI Chat Completions (`gpt-4o-mini`).
 
 ### Produção
 
-GitHub Pages **ainda não está habilitado** (decisão do dono — depende do P0 da
-chave OpenAI/backend proxy). Enquanto Pages estiver desligado, merge na main NÃO
-derruba produção; ainda assim, main quebrada é inaceitável (é a vitrine do repo).
-Quando Pages for ligado, main = LIVE e o rigor sobe.
+GitHub Pages **está habilitado**, servindo `main` na raiz (`/`). O site 2026 está
+LIVE em <https://caioross.github.io/NostalgiaGPT/>. Ou seja: **`main` = produção** —
+todo merge na `main` vai direto ao ar. O rigor é o mais alto: **main quebrada = site
+fora do ar** (não só a vitrine do repo). O PR Doctor lê o diff inteiro antes de
+mergear e o gate verde é obrigatório — sem enfraquecer nada do §6/§7.
+
+O site foi ao ar **com a #12 ainda em aberto** (chave OpenAI legada de 2023 exposta
+no histórico público): Pages não dependeu daquele P0 como este documento supunha.
+A #12 segue aberta e agora é **mais** urgente, porque o repo está com o site no ar.
 
 ## §3 — Labels (taxonomia oficial)
 
