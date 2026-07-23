@@ -229,6 +229,10 @@ git commit -m "feat: adiciona personalidade X"
 
 Distribuído sob a [licença MIT](LICENSE). Use, modifique e distribua à vontade.
 
+Código de terceiros redistribuído aqui — como o **Brusher** (MIT, de Kamran Ahmed),
+responsável pelo efeito de fundo esfumaçado — está creditado em
+[ATTRIBUTION.md](ATTRIBUTION.md).
+
 ---
 
 <div align="center">
@@ -331,6 +335,10 @@ NostalgiaGPT/
 ### 📄 License
 
 Distributed under the [MIT License](LICENSE). Use, modify, and distribute freely.
+
+Third-party code redistributed here — such as **Brusher** (MIT, by Kamran Ahmed),
+which powers the blurred background effect — is credited in
+[ATTRIBUTION.md](ATTRIBUTION.md).
 
 ---
 
