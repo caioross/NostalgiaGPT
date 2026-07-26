@@ -617,6 +617,8 @@ button { font-family: var(--font-body); cursor: pointer; }
   border-color: var(--gold);
   box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px var(--gold), 0 0 50px rgba(201,168,76,0.18);
 }
+/* offset maior que o da galeria: separa o anel da borda dourada do card ativo */
+.gondola-card:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .gcard-avatar { width: 92px; height: 92px; margin-bottom: 0.3rem; position: relative; }
 .gcard-avatar .avatar-img,
 .gcard-avatar .monogram {
