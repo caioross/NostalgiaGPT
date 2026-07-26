@@ -16,7 +16,7 @@ A lei é `docs/fleet/HANDBOOK.md`; esta skill traz as receitas prontas. Em confl
 - CI: workflow `gate` (`.github/workflows/gate.yml` → `node scripts/gate.mjs`)
 - Rotinas: Curador (diário ~12h) · Resolvedor (diário ~16h) · PR Doctor (diário ~21h30)
 - Labels de área (HANDBOOK §3): `area:conteudo` · `area:chat-core` · `area:ui-ux` · `area:seo-a11y` · `area:perf-assets` · `area:docs` · `area:infra`
-- Skills irmãs: `nostalgia-content` (personalidades — em atualização, ver issue #10), `web-security-audit`, `secrets-guardian`
+- Skills irmãs: `nostalgia-content` (personalidades: modelo real `{ name, cat, years, tagline, img, starters? }`), `web-security-audit`, `secrets-guardian`
 
 ## §2 Claim — 3 checagens antes de pegar a issue <N>
 
@@ -95,7 +95,7 @@ ICE das Ideas: HANDBOOK §9 (≥48 → issue P1/P2; 20–47 → P3; <20 não con
 - `persons/` tem nomes de arquivo com espaço e acento (ex.: `Cleópatra.jpg`) — no shell, aspas sempre.
 - **NUNCA tocar em `.env*`** (existe só no clone do dono e contém segredo real; worktrees novos não o contêm — e deve continuar assim). Nunca imprimir segredo, nem mascarado.
 - `brusher-demo.min.js/.css` e demais `*.min.*` são vendored: não formatar, não editar, não "otimizar". O Brusher é área sagrada (HANDBOOK §2).
-- `slug` e `initials` NÃO existem no fonte — são derivados em runtime por `slugify`/`initials` em `js/personalities.js`. Novas personalidades: uma linha no formato do array `PEOPLE`, só `{ name, cat, years, tagline, img }`.
+- `slug` e `initials` NÃO existem no fonte — são derivados em runtime por `slugify`/`initials` em `js/personalities.js`. Novas personalidades: uma linha no formato do array `PEOPLE` — `{ name, cat, years, tagline, img }` + `starters` opcional (3–5 perguntas). Detalhes e validador: skill `nostalgia-content`.
 - Issues #1, #3 e #4 são de humanos da comunidade (2023) e podem se referir a código antigo — HANDBOOK §10: revalidar contra o código atual antes de agir; fechar só com evidência.
 - A branch `legacy-2023` citada no HANDBOOK §5/§10 pode ainda não existir — se ausente, apenas não a crie nem a procure; siga o §10 revalidando contra o código atual.
 - Houve setup da frota em duas sessões paralelas em 2026-07-07; se encontrar artefato duplicado (Diário, skill de ops, labels antigas `area:chat`/`area:ui`/`area:a11y`/`area:seguranca`), consolide no canônico (Diário = #7 fixada; skill = esta; labels = as do HANDBOOK §3) e registre no Diário.

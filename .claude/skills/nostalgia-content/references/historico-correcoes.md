@@ -7,13 +7,20 @@ Manter este registro é importante para:
 - Evitar reverter correções por engano
 - Auditar qualidade factual do produto ao longo do tempo
 
+A chave é o **`name`** exato do array `PEOPLE`; os campos corrigíveis por conteúdo são
+`years`, `tagline`, `starters` e `img` (o system prompt é gerado em runtime por
+`buildSystemPrompt()` em `js/mainJs.js` — mudá-lo é quórum, HANDBOOK §7.2, não correção
+de conteúdo). Renomear ou remover personalidade muda o `slug` derivado (chave de
+`localStorage`/`data-attrs`) e exige decisão do dono.
+
 Formato:
 ```
-## AAAA-MM-DD — [id-da-personalidade] — [campo corrigido]
+## AAAA-MM-DD — [Nome Completo] — [campo corrigido]
 - **O que estava errado:** [descrição do erro]
 - **O que foi corrigido:** [descrição da correção]
 - **Fonte:** [URL ou referência]
-- **Impacto:** [afetou starters? system prompt? description?]
+- **Impacto:** [afetou starters? tagline? years? a foto?]
+- **PR:** #NNN
 ```
 
 ---
@@ -21,9 +28,10 @@ Formato:
 <!-- Adicione entradas abaixo conforme correções forem aplicadas -->
 
 <!-- Exemplo:
-## 2026-06-21 — albert-einstein — systemPrompt
-- **O que estava errado:** system prompt mencionava "computadores quânticos" — tecnologia inexistente durante a vida de Einstein (1879–1955).
-- **O que foi corrigido:** Removida a referência; substituída por "cálculo mecânico" como o que Einstein conhecia de máquinas de computar.
+## 2026-07-26 — Albert Einstein — starters
+- **O que estava errado:** um starter perguntava sobre computadores quânticos — tecnologia inexistente durante a vida de Einstein (1879–1955).
+- **O que foi corrigido:** substituído por pergunta sobre a confirmação da relatividade no eclipse de 1919.
 - **Fonte:** Wikipedia EN — Albert Einstein (seção "Scientific career")
-- **Impacto:** Apenas systemPrompt; starters e description não afetados.
+- **Impacto:** Apenas starters; tagline e years não afetados.
+- **PR:** #00
 -->
