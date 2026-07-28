@@ -17,7 +17,9 @@
    cat     → 'ciencia' | 'arte' | 'filosofia' | 'lideres' | 'musica' | 'lendas'
    years   → en-dash '–', nunca hífen: '1879–1955', '470–399 a.C.', '4 a.C.–65 d.C.'
              sem datas conhecidas → 'Lenda'
-   tagline → até 40 caracteres (o maior do arquivo hoje tem 27), sem ponto final
+   tagline → 40 caracteres é o teto do validador, não garantia de caber: o card da
+             galeria trunca bem antes (issue #41, aberta). Mire perto dos 27 do maior
+             atual; sem ponto final
    img     → null, ou caminho de arquivo que EXISTE em persons/ (nomes com acento e
              espaço são a convenção do diretório)
    starters→ 3 a 5 perguntas em PT-BR, tratando a pessoa diretamente, ~40–72 chars,

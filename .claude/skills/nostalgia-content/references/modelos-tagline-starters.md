@@ -14,7 +14,7 @@ histórica acontece. Os modelos abaixo são pontos de partida — sempre adapte 
 ## Regras da `tagline`
 
 - Epíteto pelo qual a pessoa é reconhecida, não descrição de currículo
-- ≤ 40 caracteres (o maior do arquivo hoje tem 27); sem ponto final
+- ≤ 40 caracteres é o teto que o validador reprova, não uma garantia de exibição: enquanto a issue #41 (aberta) não corrigir o CSS, o card da galeria trunca a tagline em pouquíssimos caracteres. Mire perto dos 27 do maior atual; sem ponto final
 - Em PT-BR, com maiúsculas de título: `Pai da Relatividade`, `O Rei do Rock`
 - Entra literalmente no prompt (`'Você é ' + name + ' (' + years + '), ' + tagline`) e na saudação do chat — evite adjetivo vago ("Grande gênio") e qualquer anacronia
 
@@ -49,6 +49,8 @@ Anacronia a evitar: teoria posterior à morte (Newton não comenta relatividade)
 Tagline: obra-prima ou movimento. Reais: `O Gênio Renascentista`,
 `Mestre da Capela Sistina`, `Pioneiro do Cubismo`.
 
+Starters (modelo + exemplo real, Michelangelo):
+
 ```
 1. <processo de uma obra específica>   → "Como o senhor concebeu a abóbada da Capela Sistina?"
 2. <patrono, rival ou encomenda>       → "O que era trabalhar sob a exigência do papa Júlio II?"
@@ -61,6 +63,8 @@ Anacronia a evitar: movimento artístico posterior, obra que a pessoa não chego
 
 Tagline: escola, papel ou epíteto histórico. Reais: `Fundador da Academia`,
 `O Filósofo`, `O Sábio do Oriente`.
+
+Starters (modelo + exemplo real, Platão):
 
 ```
 1. <método próprio>                    → "Por que o senhor ensinava perguntando em vez de afirmar?"
@@ -75,6 +79,8 @@ Anacronia a evitar: filosofia posterior (Platão não cita Descartes), religião
 Tagline: papel no poder. Reais: `Apóstolo da Não-Violência`,
 `O Imperador dos Franceses`, `Pai da Nação Americana`.
 
+Starters (modelo + exemplo real, Mahatma Gandhi):
+
 ```
 1. <decisão irreversível que tomou>    → "O que pesou na decisão de marchar até o mar por sal?"
 2. <adversário ou aliança real>        → "Como o senhor lidava com a oposição dentro do Congresso?"
@@ -88,8 +94,10 @@ Anacronia a evitar: fronteiras e países posteriores, guerras após a morte, jul
 Tagline: título consagrado. Reais: `O Titã da Música`, `Mestre do Barroco`,
 `O Rei do Rock`, `A Pimentinha`.
 
+Starters (modelo + exemplo real, Ludwig van Beethoven):
+
 ```
-1. <obra/apresentação marcante>        → "Como foi reger a Nona sem poder ouvi-la?"
+1. <obra/apresentação marcante>        → "Como foi estar no palco da estreia da Nona sem poder ouvi-la?"
 2. <condição de trabalho da época>     → "O que era compor por encomenda para a igreja?"
 3. <relação com o público ou a crítica>→ "O que sentia quando a plateia reagia ao seu canto?"
 ```
@@ -102,9 +110,11 @@ Categoria mista: figuras esportivas, ícones populares e personagens lendários
 (`years: 'Lenda'`). Reais: `Eterno Tricampeão`, `A Princesa do Povo`,
 `O Herói de Sherwood`.
 
+Starters (modelo + exemplo real, Ayrton Senna):
+
 ```
 1. <feito que definiu a imagem>        → "O que passou pela sua cabeça na vitória em Interlagos, em 1991?"
-2. <valor que a pessoa defendia>       → "Por que dizia que o dinheiro sozinho não bastava ao país?"
+2. <valor que a pessoa defendia>       → "É verdade que dizia que o dinheiro sozinho não bastava ao país?"
 3. <lado humano fora do palco>         → "Como era a pressão de carregar a esperança de um povo?"
 ```
 

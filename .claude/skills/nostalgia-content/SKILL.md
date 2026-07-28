@@ -35,7 +35,7 @@ Cada personalidade é **uma linha** do array `PEOPLE`, com exatamente estes camp
 | `name` | sim | nome conforme convenção histórica em PT-BR; **único** no array |
 | `cat` | sim | uma das 6 chaves de `CATEGORIES` (em português — ver abaixo) |
 | `years` | sim | `'1879–1955'` com **en-dash** (`–`, não hífen); aceita `'470–399 a.C.'`, `'4 a.C.–65 d.C.'` ou o rótulo `'Lenda'` |
-| `tagline` | sim | epíteto curto (≤ 40 chars; o maior atual tem 27) exibido no card e na saudação |
+| `tagline` | sim | epíteto curto exibido no card e na saudação. 40 chars é o teto que o validador reprova, não garantia de caber: o card trunca bem antes enquanto a issue #41 estiver aberta — mire perto dos 27 do maior atual |
 | `img` | sim | `null` → monograma gerado; ou `'persons/Nome Completo.jpg'` de arquivo existente |
 | `starters` | não | 3 a 5 perguntas de abertura; ausente → fallback genérico de `mainJs.js` |
 
@@ -134,7 +134,7 @@ Abra `index.html` e confirme:
 
 1. `python .claude/skills/nostalgia-content/scripts/validar_personalidade.py --all` para a checagem estrutural das 47.
 2. Erro factual vive em `tagline` ou `starters` — corrija a linha em `js/personalities.js` e registre em `references/historico-correcoes.md` (personagem, campo, o que estava errado, fonte).
-3. **Nunca** renomeie ou remova personalidade existente sem decisão do dono: `name` gera o `slug`, que é chave de `localStorage` e de `data-attrs`; remoção/renomeação é quórum (HANDBOOK §7.2).
+3. **Nunca** renomeie ou remova personalidade existente por conta própria: `name` gera o `slug`, que é chave de `localStorage` e de `data-attrs`. Remoção/renomeação é **quórum §7.2** (3 lentes adversariais) — não confunda com `decisao-dono`, que é o degrau acima, reservado ao núcleo §7.1.
 4. Anacronia típica a caçar nos starters: tecnologia, obra, pessoa ou evento posterior à morte da personalidade.
 
 ---

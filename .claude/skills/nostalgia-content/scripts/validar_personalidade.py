@@ -34,6 +34,13 @@ import subprocess
 import sys
 from pathlib import Path
 
+# Os nomes vem acentuados de personalities.js; no console/pipe do Windows o
+# encoding padrao e cp1252 e um nome fora dessa tabela derruba o script com
+# UnicodeEncodeError. Forcamos UTF-8 na saida antes de qualquer print.
+for _fluxo in (sys.stdout, sys.stderr):
+    if hasattr(_fluxo, "reconfigure"):
+        _fluxo.reconfigure(encoding="utf-8", errors="replace")
+
 # scripts/ -> nostalgia-content/ -> skills/ -> .claude/ -> raiz do repo
 RAIZ_PADRAO = Path(__file__).resolve().parents[4]
 
@@ -43,7 +50,9 @@ YEARS_SEM_DATA = {"Lenda", "Mito"}
 # `years` com datas: comeca com digito ou prefixo textual curto seguido de digito
 YEARS_COM_DATA = re.compile(r"^[^\d]{0,4}\d")
 
-TAGLINE_MAX = 40   # cabe no card da galeria sem truncar (ver issue #41)
+# Teto de seguranca, NAO garantia de exibicao: hoje o card da galeria trunca a
+# tagline bem antes disso (issue #41, aberta). Mire perto dos 27 do maior atual.
+TAGLINE_MAX = 40
 STARTERS_MIN = 3
 STARTERS_MAX = 5
 
