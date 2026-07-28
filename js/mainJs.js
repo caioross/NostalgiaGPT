@@ -176,6 +176,22 @@
     return '📡 Não consegui falar com a OpenAI. Verifique sua conexão com a internet e tente novamente.';
   }
 
+  /* A vitrine pública é servida com o placeholder no lugar da chave (HANDBOOK §6),
+     então toda chamada à OpenAI só poderia voltar 401. Detecta essa condição para
+     responder ao visitante sem tocar a rede. */
+  function isDemoWithoutKey() {
+    return !OPENAI_KEY || OPENAI_KEY === 'SUA_CHAVE_OPENAI_AQUI';
+  }
+  /* Mensagem para o VISITANTE da demo — sem jargão de código; quem roda local com
+     chave própria nunca vê esta mensagem (um 401 real cai em chatErrorMessage). */
+  function demoWithoutKeyMessage() {
+    return '🕰️ Esta é a vitrine pública do NostalgiaGPT: uma demonstração que não ' +
+      'acompanha chave da OpenAI, e por isso minha voz não pode atravessar até aqui. ' +
+      'Para conversar comigo de verdade, rode o projeto na sua máquina com a sua ' +
+      'própria chave — o passo a passo está na seção "Configurar a API da OpenAI" do ' +
+      'README, em github.com/caioross/NostalgiaGPT.';
+  }
+
   window.insertMessage = function () {
     var input = document.getElementById('chat-input');
     if (!input || !currentPerson) return;
@@ -185,6 +201,12 @@
 
     input.value = ''; input.style.height = 'auto';
     appendUserMessage(msgText);
+
+    /* Caminho curto da demo sem chave: responde e encerra ANTES de showTyping(),
+       do fetch e do lock — nada fica em voo, nada fica preso, `conversation`
+       segue intacta (nenhum turno órfão para a janela slice(-10)). */
+    if (isDemoWithoutKey()) { appendAIMessage(demoWithoutKeyMessage()); return; }
+
     showTyping();
     /* O turno do usuário só entra em `conversation` quando a resposta chega (par
        user+assistant no `then`). Assim uma falha não deixa turno órfão no histórico
