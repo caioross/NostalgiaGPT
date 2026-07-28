@@ -14,7 +14,7 @@ histórica acontece. Os modelos abaixo são pontos de partida — sempre adapte 
 ## Regras da `tagline`
 
 - Epíteto pelo qual a pessoa é reconhecida, não descrição de currículo
-- ≤ 40 caracteres é o teto que o validador reprova, não uma garantia de exibição: enquanto a issue #41 (aberta) não corrigir o CSS, o card da galeria trunca a tagline em pouquíssimos caracteres. Mire perto dos 27 do maior atual; sem ponto final
+- Acima de 40 caracteres o validador emite **aviso**, não erro — e 40 não é garantia de exibição: enquanto a issue #41 (aberta) não corrigir o CSS, o card da galeria trunca a tagline em pouquíssimos caracteres. Mire perto dos 27 do maior atual; sem ponto final
 - Em PT-BR, com maiúsculas de título: `Pai da Relatividade`, `O Rei do Rock`
 - Entra literalmente no prompt (`'Você é ' + name + ' (' + years + '), ' + tagline`) e na saudação do chat — evite adjetivo vago ("Grande gênio") e qualquer anacronia
 
@@ -67,7 +67,7 @@ Tagline: escola, papel ou epíteto histórico. Reais: `Fundador da Academia`,
 Starters (modelo + exemplo real, Platão):
 
 ```
-1. <método próprio>                    → "Por que o senhor ensinava perguntando em vez de afirmar?"
+1. <método próprio>                    → "Por que o senhor escreveu em diálogos, e não em tratados?"
 2. <obra ou diálogo central>           → "O que quis dizer com a alegoria da caverna?"
 3. <posição diante do poder da época>  → "Como era filosofar sob o julgamento da cidade?"
 ```
@@ -98,8 +98,8 @@ Starters (modelo + exemplo real, Ludwig van Beethoven):
 
 ```
 1. <obra/apresentação marcante>        → "Como foi estar no palco da estreia da Nona sem poder ouvi-la?"
-2. <condição de trabalho da época>     → "O que era compor por encomenda para a igreja?"
-3. <relação com o público ou a crítica>→ "O que sentia quando a plateia reagia ao seu canto?"
+2. <condição de trabalho da época>     → "Como era viver de mecenato, sem um posto fixo na corte?"
+3. <ruptura ou gesto simbólico>        → "É verdade que rasgou a dedicatória da Eroica a Bonaparte?"
 ```
 
 Anacronia a evitar: gênero musical posterior, tecnologia de gravação que não existia, referência a artistas nascidos depois.

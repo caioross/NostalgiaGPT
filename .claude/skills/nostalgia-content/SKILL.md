@@ -35,7 +35,7 @@ Cada personalidade é **uma linha** do array `PEOPLE`, com exatamente estes camp
 | `name` | sim | nome conforme convenção histórica em PT-BR; **único** no array |
 | `cat` | sim | uma das 6 chaves de `CATEGORIES` (em português — ver abaixo) |
 | `years` | sim | `'1879–1955'` com **en-dash** (`–`, não hífen); aceita `'470–399 a.C.'`, `'4 a.C.–65 d.C.'` ou o rótulo `'Lenda'` |
-| `tagline` | sim | epíteto curto exibido no card e na saudação. 40 chars é o teto que o validador reprova, não garantia de caber: o card trunca bem antes enquanto a issue #41 estiver aberta — mire perto dos 27 do maior atual |
+| `tagline` | sim | epíteto curto; acima de 40 chars o validador **avisa** (não reprova). Mire ~27: o card trunca bem antes — issue #41 aberta |
 | `img` | sim | `null` → monograma gerado; ou `'persons/Nome Completo.jpg'` de arquivo existente |
 | `starters` | não | 3 a 5 perguntas de abertura; ausente → fallback genérico de `mainJs.js` |
 
