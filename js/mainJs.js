@@ -186,10 +186,14 @@
     input.value = ''; input.style.height = 'auto';
     appendUserMessage(msgText);
     showTyping();
-    conversation.push({ role: 'user', content: msgText });
+    /* O turno do usuário só entra em `conversation` quando a resposta chega (par
+       user+assistant no `then`). Assim uma falha não deixa turno órfão no histórico
+       nem envenena a janela slice(-10) das tentativas seguintes. A requisição atual
+       usa `concat` (cópia) para já incluir o turno sem mutar o estado. */
+    var userTurn = { role: 'user', content: msgText };
 
     var messages = [{ role: 'system', content: buildSystemPrompt(currentPerson) }]
-      .concat(conversation.slice(-10));
+      .concat(conversation.concat([userTurn]).slice(-10));
 
     /* Timeout via AbortController (vanilla; sem dependência). Falha silenciosa
        de rede vira AbortError após OPENAI_TIMEOUT ms. O controller vive em `pending`
@@ -238,7 +242,7 @@
         var text = (data.choices && data.choices[0] && data.choices[0].message &&
           data.choices[0].message.content) ? data.choices[0].message.content.trim() : '';
         if (!text) text = '...';
-        conversation.push({ role: 'assistant', content: text });
+        conversation.push(userTurn, { role: 'assistant', content: text });
         appendAIMessage(text);
       })
       .catch(function (err) {
