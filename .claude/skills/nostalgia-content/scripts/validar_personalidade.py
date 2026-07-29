@@ -47,8 +47,18 @@ RAIZ_PADRAO = Path(__file__).resolve().parents[4]
 # Rotulos aceitos em `years` para quem nao tem datas (figuras lendarias)
 YEARS_SEM_DATA = {"Lenda", "Mito"}
 
-# `years` com datas: comeca com digito ou prefixo textual curto seguido de digito
-YEARS_COM_DATA = re.compile(r"^[^\d]{0,4}\d")
+# `years` com datas: checagem ESTRITA de formato (a anterior so exigia um digito
+# nos 5 primeiros caracteres, o que deixava passar '18671934' e ate lixo). Exige os
+# DOIS lados do intervalo, separador en-dash (hifen ASCII casa e vira aviso logo
+# abaixo), sufixo de era opcional em cada lado e prefixo `c.` para data incerta.
+# Cobre os 3 formatos reais do arquivo: 1879<en-dash>1955 · 428<en-dash>348 a.C. ·
+# 4 a.C.<en-dash>33 d.C.
+YEARS_COM_DATA = re.compile(
+    r"^(c\.\s*)?\d{1,4}(\s+[ad]\.C\.)?[–-]\d{1,4}(\s+[ad]\.C\.)?$"
+)
+
+# Intervalo sem sufixo de era nos dois lados: da para comparar nascimento e morte.
+YEARS_SIMPLES = re.compile(r"^(?:c\.\s*)?(\d{1,4})[–-](\d{1,4})$")
 
 # Teto de seguranca, NAO garantia de exibicao: hoje o card da galeria trunca a
 # tagline bem antes disso (issue #41, aberta). Mire perto dos 27 do maior atual.
@@ -107,11 +117,19 @@ def validar_um(p: dict, categorias: list, raiz: Path) -> tuple:
     if years and years not in YEARS_SEM_DATA:
         if not YEARS_COM_DATA.match(years):
             erros.append(
-                "'years' sem datas e fora dos rotulos aceitos "
-                f"({', '.join(sorted(YEARS_SEM_DATA))}): '{years}'"
+                "'years' fora do formato aceito ('1879<en-dash>1955', "
+                "'428<en-dash>348 a.C.', '4 a.C.<en-dash>33 d.C.', com 'c. ' opcional) "
+                f"e fora dos rotulos ({', '.join(sorted(YEARS_SEM_DATA))}): '{years}'"
             )
-        elif "-" in years:
-            avisos.append(f"'years' usa hifen '-'; o arquivo padroniza en-dash: '{years}'")
+        else:
+            if "-" in years:
+                avisos.append(f"'years' usa hifen '-'; o arquivo padroniza en-dash: '{years}'")
+            simples = YEARS_SIMPLES.match(years)
+            if simples and int(simples.group(1)) > int(simples.group(2)):
+                avisos.append(
+                    f"'years' com morte anterior ao nascimento: '{years}' "
+                    "(se for periodo a.C., o sufixo de era esta faltando)"
+                )
 
     # 4. tagline curta o bastante para o card
     tagline = p.get("tagline") or ""

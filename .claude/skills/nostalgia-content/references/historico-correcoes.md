@@ -11,7 +11,8 @@ A chave é o **`name`** exato do array `PEOPLE`; os campos corrigíveis por cont
 `years`, `tagline`, `starters` e `img` (o system prompt é gerado em runtime por
 `buildSystemPrompt()` em `js/mainJs.js` — mudá-lo é quórum, HANDBOOK §7.2, não correção
 de conteúdo). Renomear ou remover personalidade muda o `slug` derivado (chave de
-`localStorage`/`data-attrs`) e exige decisão do dono.
+`localStorage`/`data-attrs`) e é **quórum §7.2** — não `decisao-dono`, que é o degrau
+acima, reservado ao núcleo §7.1.
 
 Formato:
 ```

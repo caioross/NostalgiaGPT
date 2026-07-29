@@ -61,8 +61,12 @@ cada objeto ao carregar (`slugify(name)` e `initials(name)`). Nunca escreva-os �
 
 Total: **47** (8 com foto real, 39 com monograma; 7 já têm `starters` próprios).
 Cada categoria também define `short`, `icon` e o par de cores `c1`/`c2` do monograma.
-Categoria nova exige mexer em `CATEGORIES`, nos filtros do `index.html` e no CSS —
-é mudança estrutural: proponha ao dono antes (HANDBOOK §7).
+Categoria nova é só uma chave a mais em `CATEGORIES` (`label`, `short`, `icon`, `c1`,
+`c2`): os filtros (`js/mainJs.js:336`) e os grupos da galeria (`js/mainJs.js:290`) são
+gerados por `Object.keys(D.categories)`, e as cores entram por custom property
+(`--p-c1`/`--g-c1`) — o `index.html` traz só o contêiner vazio `#picker-cats` (`:259`)
+e o CSS não tem nenhuma regra por categoria. Ainda assim, criar categoria muda a
+taxonomia do produto: proponha na issue antes de escrever a linha.
 
 ### O system prompt não é por personagem
 
