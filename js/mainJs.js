@@ -176,20 +176,23 @@
     return '📡 Não consegui falar com a OpenAI. Verifique sua conexão com a internet e tente novamente.';
   }
 
-  /* A vitrine pública é servida com o placeholder no lugar da chave (HANDBOOK §6),
-     então toda chamada à OpenAI só poderia voltar 401. Detecta essa condição para
-     responder ao visitante sem tocar a rede. */
+  /* O fonte versiona o placeholder no lugar da chave (HANDBOOK §6), então toda
+     chamada à OpenAI só poderia voltar 401 — tanto na vitrine pública quanto em
+     quem abriu o index.html antes de configurar a chave. Detecta essa condição
+     para responder sem tocar a rede. */
   function isDemoWithoutKey() {
     return !OPENAI_KEY || OPENAI_KEY === 'SUA_CHAVE_OPENAI_AQUI';
   }
-  /* Mensagem para o VISITANTE da demo — sem jargão de código; quem roda local com
-     chave própria nunca vê esta mensagem (um 401 real cai em chatErrorMessage). */
+  /* Mensagem sem jargão de código, e agnóstica de onde a página está rodando: o
+     código não tem como saber se é a vitrine ou uma cópia local, então o texto não
+     afirma nem uma coisa nem outra — só diz o que falta e onde está o passo a passo.
+     Quem já configurou a chave nunca vê isto (401 real cai em chatErrorMessage). */
   function demoWithoutKeyMessage() {
-    return '🕰️ Esta é a vitrine pública do NostalgiaGPT: uma demonstração que não ' +
-      'acompanha chave da OpenAI, e por isso minha voz não pode atravessar até aqui. ' +
-      'Para conversar comigo de verdade, rode o projeto na sua máquina com a sua ' +
-      'própria chave — o passo a passo está na seção "Configurar a API da OpenAI" do ' +
-      'README, em github.com/caioross/NostalgiaGPT.';
+    return '🕰️ Esta demonstração do NostalgiaGPT está sem chave da OpenAI ' +
+      'configurada, e por isso minha voz não pode atravessar até aqui. Para ' +
+      'conversar comigo de verdade é preciso rodar o projeto com uma chave própria ' +
+      '— o passo a passo está na seção "Configurar a API da OpenAI" do README, em ' +
+      'github.com/caioross/NostalgiaGPT.';
   }
 
   window.insertMessage = function () {
