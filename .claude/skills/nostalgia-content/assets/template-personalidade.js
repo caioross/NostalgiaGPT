@@ -1,35 +1,31 @@
-// Template de personalidade — NostalgiaGPT
-// Copie este objeto e preencha todos os campos antes de inserir em js/personalities.js
-// Remova este comentário antes de inserir no array
+/* Template de personalidade — NostalgiaGPT
+   Cada personalidade é UMA LINHA do array PEOPLE em js/personalities.js,
+   inserida no bloco da categoria correspondente e alinhada com as vizinhas.
 
-{
-  id: "nome-sobrenome",               // kebab-case, sem acentos, único no array
-  name: "Nome Completo",              // nome conforme convenção histórica
-  category: "scientists",             // scientists | philosophers | artists | leaders | writers | explorers
-  era: "século XIX",                  // período em PT-BR: "Antiguidade", "século XVI", "1800s", etc.
-  years: "1564–1642",                 // AAAA–AAAA; use "c. AAAA" se data incerta
-  nationality: "Italiano",            // nacionalidade em PT-BR
-  description: "Frase curta de apresentação no carrossel (≤ 20 palavras).",
-  photo: null,                        // null = monograma gerado automaticamente
-                                      // "persons/nome.jpg" se tiver foto real em persons/
-  starters: [
-    "Qual foi a descoberta que mais mudou sua visão de mundo?",
-    "Como você começou a se interessar por [área principal]?",
-    "Quais eram seus maiores adversários intelectuais e por quê?",
-    "Se pudesse refazer algo em sua vida, o que seria?",
-    // Adicione ou remova starters — mínimo 3, máximo 5
-  ],
-  systemPrompt: `Você é [Nome Completo], [profissão/papel] [nacionalidade] que viveu de [anos].
+   Campos: name, cat, years, tagline, img (+ starters opcional).
+   NÃO escreva `slug` nem `initials`: são derivados em runtime por
+   slugify(name)/initials(name) dentro do próprio personalities.js.
+   Copie a linha abaixo, preencha e apague este cabeçalho. */
 
-[2–3 frases estabelecendo quem é, o que fez e o contexto histórico em que viveu.]
+/* Com starters próprios (preferido — 3 a 5 perguntas) e foto real em persons/: */
+{ name: 'Nome Completo', cat: 'ciencia', years: '1879–1955', tagline: 'Epíteto curto', img: 'persons/Nome Completo.jpg', starters: ['Pergunta ancorada em fato documentado da vida dele(a)?', 'Como foi <episódio marcante>?', 'O que o senhor pensava sobre <tema que a pessoa abordou de verdade>?'] },
 
-Responda sempre em primeira pessoa, como se estivesse em [lugar característico — laboratório, ateliê, corte, navio...]
-em [período/cidade]. Seu conhecimento se limita ao que existia até [ano de morte ou época].
+/* Sem foto (monograma gerado) e sem starters (cai no fallback genérico de mainJs.js): */
+{ name: 'Nome Completo', cat: 'lendas', years: 'Lenda', tagline: 'Epíteto curto', img: null },
 
-[2–3 traços de personalidade específicos do personagem real.]
-[1–2 tópicos que você aborda com profundidade e paixão particular.]
+/* Referência de valores:
+   cat     → 'ciencia' | 'arte' | 'filosofia' | 'lideres' | 'musica' | 'lendas'
+   years   → en-dash '–', nunca hífen: '1879–1955', '470–399 a.C.', '4 a.C.–65 d.C.'
+             sem datas conhecidas → 'Lenda'
+   tagline → acima de 40 caracteres o validador AVISA (não reprova), e 40 tampouco é
+             garantia de caber: o card da galeria trunca bem antes (issue #41, aberta).
+             Mire perto dos 27 do maior atual; sem ponto final
+   img     → null, ou caminho de arquivo que EXISTE em persons/ (nomes com acento e
+             espaço são a convenção do diretório)
+   starters→ 3 a 5 perguntas em PT-BR, tratando a pessoa diretamente, ~40–72 chars,
+             nada posterior à morte dela
 
-Se perguntado sobre eventos, tecnologias ou descobertas posteriores à sua época, declare que não tem
-esse conhecimento.
-Responda em português brasileiro.`
-}
+   Valide antes de abrir PR:
+     python .claude/skills/nostalgia-content/scripts/validar_personalidade.py --name "Nome Completo"
+     node scripts/gate.mjs
+*/

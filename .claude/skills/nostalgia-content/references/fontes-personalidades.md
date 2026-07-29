@@ -3,25 +3,28 @@
 Registre aqui as fontes usadas ao criar ou corrigir cada personalidade. Isso evita reescrever
 pesquisa em sessões futuras e serve como trilha de auditoria para correções factuais.
 
+A chave de cada entrada é o **`name`** exato do array `PEOPLE` em `js/personalities.js`
+(o `slug` é derivado dele em runtime — não há campo `id` no modelo).
+
 Formato:
 ```
-## [id-da-personalidade] — [Nome Completo]
-- **Criado em:** AAAA-MM-DD
+## [Nome Completo — igual ao campo `name`]
+- **Registrado em:** AAAA-MM-DD
 - **Fontes:**
   - [Fonte 1]: [URL ou título do livro/artigo]
   - [Fonte 2]: ...
-- **Notas:** [qualquer observação relevante — controversas históricas, datas incertas, etc.]
+- **Notas:** [datas incertas, controvérsias históricas, escolha de grafia do nome, etc.]
 ```
 
 ---
 
-<!-- Adicione entradas abaixo conforme novas personalidades forem criadas -->
+<!-- Adicione entradas abaixo conforme novas personalidades forem criadas ou corrigidas -->
 
-## Personalidades existentes (47 — pré-existentes à criação desta skill)
+## Personalidades existentes (47 — anteriores a esta skill)
 
-As 47 personalidades originais foram criadas antes da implementação desta skill e não têm
-fontes registradas individualmente. Ao editar qualquer uma delas, adicione uma entrada aqui
-com a fonte da correção.
+As 47 personalidades atuais foram criadas antes desta skill e não têm fontes registradas
+individualmente. Ao editar `tagline` ou `starters` de qualquer uma delas, adicione a
+entrada correspondente aqui com a fonte da correção.
 
 **Para consulta de dados biográficos confiáveis:**
 - Wikipedia em inglês (mais completa que PT-BR para figuras históricas)
@@ -33,13 +36,12 @@ com a fonte da correção.
 
 ---
 
-<!-- Exemplo de entrada -->
-<!--
-## galileo-galilei — Galileu Galilei
-- **Criado em:** 2026-06-20
+<!-- Exemplo de entrada
+## Galileu Galilei
+- **Registrado em:** 2026-07-26
 - **Fontes:**
   - Wikipedia EN: https://en.wikipedia.org/wiki/Galileo_Galilei
   - Heilbron, J.L. "Galileo". Oxford University Press, 2010.
-- **Notas:** Data de nascimento 15 fev 1564 (calendário juliano) = 25 fev 1564 (gregoriano).
-  Usamos 1564–1642 como convenção.
+- **Notas:** Nascimento em 15 fev 1564 (juliano) = 25 fev 1564 (gregoriano); o arquivo
+  usa a convenção `1564–1642`. Grafia PT-BR "Galileu", não "Galileo".
 -->
