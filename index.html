@@ -234,6 +234,32 @@
     </div>
   </section>
 
+  <!-- ═══════════════════ GALERIA ═══════════════════ -->
+  <section class="gallery-section" id="galeria" aria-label="Galeria de personalidades">
+    <div class="gallery-container">
+      <div class="section-header">
+        <h2 class="section-title">A Galeria das Lendas</h2>
+        <p class="section-subtitle">
+          Mais de quarenta vozes reunidas em seis salas — Ciência &amp; Tecnologia, Arte &amp; Literatura,
+          Filosofia &amp; Fé, Líderes &amp; Política, Música e Esporte &amp; Lendas. Escolha um nome e a conversa começa.
+        </p>
+      </div>
+
+      <!-- Grupos, contagens e cards são gerados por buildGallery() (js/mainJs.js) -->
+      <div id="gallery"></div>
+
+      <div class="gallery-cta-wrap">
+        <button type="button" class="ghost-btn" data-open-picker aria-haspopup="dialog" aria-label="Abrir a Gôndola de Lendas">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          Abrir a Gôndola
+        </button>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════════ MODAL: GÔNDOLA ═══════════════════ -->
   <div class="picker-overlay" id="picker" hidden>
     <div class="picker-backdrop" data-close-picker></div>
