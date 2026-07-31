@@ -87,6 +87,9 @@
   <!-- ═══ Efeito de fundo "Brusher" (esfumaçado / revelar) ═══ -->
   <script src="brusher-demo.min.js"></script>
 
+  <!-- Landmark principal: hero + chat + galeria (o rodapé fica fora) -->
+  <main>
+
   <!-- ═══════════════════ HERO ═══════════════════ -->
   <section class="hero" aria-label="Apresentação">
     <div class="hero-content">
@@ -129,7 +132,7 @@
   <section class="chat-section" id="chat" aria-label="Interface de chat">
     <div class="chat-section-bg" aria-hidden="true"></div>
     <div class="chat-container">
-      <div class="chat-card" role="main">
+      <div class="chat-card">
 
         <!-- Personality Bar -->
         <div class="personality-bar" role="banner">
@@ -259,6 +262,30 @@
       </div>
     </div>
   </section>
+
+  </main>
+
+  <!-- ═══════════════════ RODAPÉ ═══════════════════ -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-logo">
+        <img src="favicon-32.png" alt="" width="22" height="22">
+        NostalgiaGPT
+      </p>
+      <p class="footer-tagline">Um salão de vozes que o tempo não calou.</p>
+      <nav class="footer-links" aria-label="Links do projeto">
+        <a href="https://github.com/caioross/NostalgiaGPT" target="_blank" rel="noopener">Repositório</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="https://github.com/caioross/NostalgiaGPT/blob/main/LICENSE" target="_blank" rel="noopener">Licença MIT</a>
+        <span class="footer-sep" aria-hidden="true">·</span>
+        <a href="https://github.com/caioross/NostalgiaGPT/blob/main/ATTRIBUTION.md" target="_blank" rel="noopener">Créditos de terceiros</a>
+      </nav>
+      <p class="footer-credit">
+        Feito com <span role="img" aria-label="amor">♥</span> por
+        <a href="https://github.com/caioross" target="_blank" rel="noopener">Caio Ross</a> — código sob licença MIT.
+      </p>
+    </div>
+  </footer>
 
   <!-- ═══════════════════ MODAL: GÔNDOLA ═══════════════════ -->
   <div class="picker-overlay" id="picker" hidden>
