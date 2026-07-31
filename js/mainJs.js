@@ -142,6 +142,29 @@
     if (btn)   btn.disabled   = busy;
   }
 
+  /* Altura do textarea acompanhando o conteúdo (mesmo ajuste do handler de `input`). */
+  function autosizeChatInput(el) {
+    if (!el) return;
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 120) + 'px';
+  }
+
+  /* Devolve ao campo o texto que não chegou a virar resposta, para o visitante
+     reenviar sem redigitar. Só o caminho de erro real chama isto: o abort por
+     troca de personagem descartou aquela conversa de propósito. */
+  function restoreChatDraft(text) {
+    var input = document.getElementById('chat-input');
+    if (!input) return;
+    input.value = text;
+    autosizeChatInput(input);
+    /* Só devolve o foco se o campo estiver de fato acessível. Com a Gôndola
+       aberta o textarea fica atrás do overlay: focá-lo sequestraria o teclado do
+       modal (a busca pararia de receber o que se digita e o Enter enviaria a
+       mensagem em vez de confirmar o personagem). Ao fechar a Gôndola,
+       closePicker() devolve o foco por conta própria via `lastFocus`. */
+    if (!picker || picker.hidden) input.focus();
+  }
+
   function buildSystemPrompt(p) {
     return [
       'Você é ' + p.name + ' (' + p.years + '), ' + p.tagline + '.',
@@ -272,9 +295,10 @@
       })
       .catch(function (err) {
         if (req.cancelled) { done(); return; }    // abort intencional (troca de personagem) — silêncio
-        done();
+        done();                                   // reabilita o campo ANTES de devolver o texto
         hideTyping();
         appendAIMessage(chatErrorMessage(err));
+        restoreChatDraft(msgText);                // reenvio sem redigitar (a bolha de erro continua)
         console.error('[NostalgiaGPT]', err);
       });
   };
@@ -580,8 +604,7 @@
     });
     /* Auto-resize do textarea */
     $(document).on('input', '#chat-input', function () {
-      this.style.height = 'auto';
-      this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+      autosizeChatInput(this);
     });
   });
 
