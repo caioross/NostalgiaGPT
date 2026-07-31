@@ -157,7 +157,12 @@
     if (!input) return;
     input.value = text;
     autosizeChatInput(input);
-    input.focus();
+    /* Só devolve o foco se o campo estiver de fato acessível. Com a Gôndola
+       aberta o textarea fica atrás do overlay: focá-lo sequestraria o teclado do
+       modal (a busca pararia de receber o que se digita e o Enter enviaria a
+       mensagem em vez de confirmar o personagem). Ao fechar a Gôndola,
+       closePicker() devolve o foco por conta própria via `lastFocus`. */
+    if (!picker || picker.hidden) input.focus();
   }
 
   function buildSystemPrompt(p) {
