@@ -1,0 +1,103 @@
+name: 🎩 Personalidade — sugerir ou corrigir
+description: Propor uma nova personalidade histórica, ou corrigir dados de uma existente.
+title: "Conteúdo: "
+labels: ["area:conteudo"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        As 47 personalidades vivem em `js/personalities.js` — a fonte única de verdade do conteúdo.
+        Cada uma é **uma linha** do array `PEOPLE` no formato `{ name, cat, years, tagline, img }`.
+
+        Não preencha `slug` nem `initials`: eles são **derivados em runtime** pelo próprio arquivo.
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de contribuição
+      options:
+        - Nova personalidade
+        - Correção de dados de uma personalidade existente
+    validations:
+      required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: "`name` — nome exibido"
+      description: Exatamente como deve aparecer no card. Acentuação correta.
+      placeholder: Marie Curie
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cat
+    attributes:
+      label: "`cat` — categoria"
+      description: São as 6 categorias existentes. Não criamos categoria nova por personalidade.
+      options:
+        - "ciencia — Ciência & Tecnologia"
+        - "arte — Arte & Literatura"
+        - "filosofia — Filosofia & Fé"
+        - "lideres — Líderes & Política"
+        - "musica — Música"
+        - "lendas — Esporte & Lendas"
+    validations:
+      required: true
+
+  - type: input
+    id: years
+    attributes:
+      label: "`years` — período de vida"
+      description: "Formato do arquivo, com travessão: `1867–1934`. Antes de Cristo: `428–348 a.C.`"
+      placeholder: 1867–1934
+    validations:
+      required: true
+
+  - type: input
+    id: tagline
+    attributes:
+      label: "`tagline` — legenda curta"
+      description: Até ~30 caracteres; é o que aparece sob o nome no card.
+      placeholder: Pioneira da Radioatividade
+    validations:
+      required: true
+
+  - type: textarea
+    id: historicidade
+    attributes:
+      label: Por que esta pessoa, e com que fontes
+      description: Relevância histórica e ao menos uma fonte verificável para as datas e a legenda. Anacronismo e biografia inventada são motivo de recusa.
+      placeholder: |
+        Duas vezes laureada com o Nobel (Física 1903, Química 1911).
+        Fonte: https://www.nobelprize.org/prizes/physics/1903/marie-curie/facts/
+    validations:
+      required: true
+
+  - type: textarea
+    id: foto
+    attributes:
+      label: "`img` — foto (opcional)"
+      description: |
+        Sem foto o site gera um monograma automático — isso é aceitável e é o caso da maioria.
+        Se propuser foto, informe a **origem e a licença** (domínio público ou licença compatível) e o link para o original.
+        Não anexe arquivo cuja licença você não conheça.
+      placeholder: |
+        Origem: Wikimedia Commons — https://commons.wikimedia.org/wiki/File:....jpg
+        Licença: domínio público (autor falecido há mais de 70 anos)
+
+  - type: textarea
+    id: starters
+    attributes:
+      label: "`starters` — perguntas de abertura (opcional)"
+      description: Até 3 perguntas em PT-BR, na segunda pessoa, sobre fatos da vida da pessoa. Sem anacronismo.
+      placeholder: |
+        Como foi isolar o rádio no galpão da Rue Lhomond?
+        O que sentiu ao receber o segundo Nobel?
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        Se você mesmo for abrir o PR: edite **uma linha** no array `PEOPLE`, mantendo o alinhamento
+        das colunas vizinhas, e rode `node scripts/gate.mjs` antes de enviar.
