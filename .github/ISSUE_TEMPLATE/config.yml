@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💡 Tenho uma ideia / sugestão de funcionalidade
+    url: https://github.com/caioross/NostalgiaGPT/discussions/new?category=ideas
+    about: Ideias passam primeiro por Discussions/Ideas e por uma triagem ICE — as bem avaliadas viram issue. Abrir ideia como issue atrasa a sua proposta.
+  - name: ❓ Dúvida de uso do site ou do chat
+    url: https://github.com/caioross/NostalgiaGPT/discussions/new?category=q-a
+    about: Perguntas sobre como usar o NostalgiaGPT são respondidas em Discussions/Q&A.
+  - name: 📖 Como este repositório funciona (HANDBOOK da frota)
+    url: https://github.com/caioross/NostalgiaGPT/blob/main/docs/fleet/HANDBOOK.md
+    about: Prioridades, áreas, gate obrigatório e o que só o dono decide. Leitura recomendada antes de abrir issue ou PR.

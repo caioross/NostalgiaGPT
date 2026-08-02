@@ -1,0 +1,82 @@
+name: 🐞 Bug
+description: Algo do site está quebrado ou se comporta de forma errada.
+title: "Bug: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por relatar. Quanto mais concreto o relato, mais rápido ele vira correção.
+
+        ⚠️ **Nunca cole chaves de API, tokens ou dados pessoais** aqui — esta issue é pública.
+        Suspeita de vulnerabilidade ou de segredo exposto? Não descreva o vetor em público:
+        abra um contato mínimo com o dono do repositório antes.
+
+  - type: textarea
+    id: descricao
+    attributes:
+      label: O que está acontecendo
+      description: Descreva o comportamento errado em uma ou duas frases.
+      placeholder: Ao abrir a gôndola, o card selecionado fica atrás dos vizinhos.
+    validations:
+      required: true
+
+  - type: textarea
+    id: passos
+    attributes:
+      label: Passos para reproduzir
+      description: Passo a passo, do zero, na URL pública (https://caioross.github.io/NostalgiaGPT/).
+      placeholder: |
+        1. Abrir https://caioross.github.io/NostalgiaGPT/
+        2. Clicar em "Escolher personalidade"
+        3. Arrastar a gôndola para a esquerda
+        4. Ver o card central sumir atrás do vizinho
+    validations:
+      required: true
+
+  - type: textarea
+    id: esperado
+    attributes:
+      label: Comportamento esperado
+      description: O que deveria acontecer no lugar.
+    validations:
+      required: true
+
+  - type: input
+    id: ambiente
+    attributes:
+      label: Navegador e sistema operacional
+      description: Inclua a versão. Se for no celular, diga o aparelho.
+      placeholder: Chrome 127 · Windows 11 · desktop 1920×1080
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      description: Áreas oficiais do projeto (HANDBOOK §3). Na dúvida, escolha a mais próxima — a triagem ajusta.
+      options:
+        - "area:conteudo — personalidades, prompts, historicidade"
+        - "area:chat — mainJs, OpenAI, robustez, erros"
+        - "area:ui — tema, galeria, gôndola, responsivo, SEO/OG"
+        - "area:seguranca — XSS, segredos, escape"
+        - "area:a11y — acessibilidade"
+        - "area:perf-assets — imagens, peso da página, carregamento"
+        - "area:docs — README, documentação"
+        - "area:infra — git, gate, frota, tooling"
+    validations:
+      required: true
+
+  - type: input
+    id: contexto
+    attributes:
+      label: Contexto no código (opcional)
+      description: Se souber onde o problema mora, aponte `arquivo:linha`.
+      placeholder: js/mainJs.js:412
+
+  - type: textarea
+    id: extras
+    attributes:
+      label: Evidência (opcional)
+      description: Print, GIF ou o erro do console do navegador (F12 → Console). Cole o texto do erro, não a página inteira.
