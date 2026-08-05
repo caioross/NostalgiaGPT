@@ -683,7 +683,11 @@ button { font-family: var(--font-body); cursor: pointer; }
 @media (max-width: 680px) {
   .nav { padding: 1.25rem 1.25rem; }
   .nav-logo span { display: none; }
-  .hero-title { font-size: clamp(2.8rem, 15vw, 4.5rem); }
+  /* O wordmark é uma palavra só (não quebra): em Cinzel 700 a largura do texto
+     é 7,51× o font-size. Com o padding de 24px do .hero-content — e reservando
+     os ~15px da barra de rolagem, que o `vw` não desconta — só cabe até 320px
+     se font-size ≤ (100vw − 63px) / 7,51, daí 10.5vw (e não 15vw). Ver #77. */
+  .hero-title { font-size: clamp(2rem, 10.5vw, 4.5rem); }
   .hero-actions { flex-direction: column; align-items: stretch; }
 
   .personality-bar { gap: 0.7rem; padding: 0.85rem 0.9rem; flex-wrap: wrap; }
