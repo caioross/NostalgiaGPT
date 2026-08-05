@@ -74,6 +74,10 @@
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
+  <!-- Imagem nítida do Brusher: o download é disparado pelo script (defer),
+       então o preload o antecipa para o tempo de parse do documento. -->
+  <link rel="preload" as="image" href="images/homepage.jpg">
+
   <!-- ═══ Google Fonts ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,7 +89,7 @@
 <body class="homepage">
 
   <!-- ═══ Efeito de fundo "Brusher" (esfumaçado / revelar) ═══ -->
-  <script src="brusher-demo.min.js"></script>
+  <script src="brusher-demo.min.js" defer></script>
 
   <!-- Landmark principal: hero + chat + galeria (o rodapé fica fora) -->
   <main>
