@@ -52,7 +52,7 @@ body {
    A imagem borrada fica no body; o brusher-demo.min.js cria
    as camadas fixas (nítida + canvas "escovável") em z-index:-1. */
 body.homepage {
-  background-image: url("images/homepage-blurred.jpg");
+  background-image: url("../images/homepage-blurred.jpg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
